@@ -1,11 +1,15 @@
 minetest.register_privilege("brush", "Allows players to use the brush")
-priv_name = "brush"
 
 minetest.register_craftitem("brush:brush", {
 	inventory_image = "brush_brush.png",
 	description = "Magic Brush",
 	stack_max = 1,
 	on_place = function(itemstack, placer, pointed_thing)
+		if not minetest.check_player_privs(placer, "brush") then
+			minetest.chat_send_player(placer:get_player_name(), "Missing privilege: brush")
+			return
+		end
+
 		if not pointed_thing or pointed_thing.type ~= "node" then
 			return
 		end
