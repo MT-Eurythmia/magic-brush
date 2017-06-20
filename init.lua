@@ -1,6 +1,6 @@
 minetest.register_privilege("brush", "Allows players to use the brush")
 
-minetest.register_craftitem("brush:brush", {
+minetest.register_craftitem("magic_brush:brush", {
 	inventory_image = "brush_brush.png",
 	description = "Magic Brush",
 	stack_max = 1,
