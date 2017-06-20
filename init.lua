@@ -1,6 +1,6 @@
 minetest.register_privilege("brush", "Allows players to use the brush")
 
-minetest.register_craftitem("magic_brush:brush", {
+minetest.register_craftitem("brush:brush", {
 	inventory_image = "brush_brush.png",
 	description = "Magic Brush",
 	stack_max = 1,
@@ -158,6 +158,9 @@ minetest.register_craftitem("magic_brush:brush", {
 
 minetest.register_on_player_receive_fields(function(player, formname, fields)
 	if formname ~= "brush:brush_config" then
+		return
+	end
+	if not fields.exit then
 		return
 	end
 	if not tonumber(fields.radius) or not tonumber(fields.height) or not tonumber(fields.backward) then
