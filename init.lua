@@ -152,7 +152,7 @@ minetest.register_craftitem("magic_brush:brush", {
 			"field[0.3,2.5;2,1;backward;Backward length;"..backward.."]"..
 			"checkbox[2.2,0;replace_air;Replace air only;"..replace_air.."]"..
 			"checkbox[2.2,1;replace_air_backward;Replace air only\nwhen going backward;"..replace_air_backward.."]"..
-			"button_exit[1.4,3.2;2,1;exit;Done]")
+			"button_exit[1.4,3.2;2,1;exit;Proceed]")
 	end
 })
 
