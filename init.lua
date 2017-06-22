@@ -160,6 +160,24 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 	if formname ~= "brush:brush_config" then
 		return
 	end
+
+	local itemstack = player:get_wielded_item()
+	if itemstack:get_name() ~= "brush:brush" then
+		minetest.chat_send_player(player:get_player_name(), "You must hold the brush.")
+		return
+	end
+
+	local meta = itemstack:get_meta()
+	if fields.replace_air ~= nil then
+		meta:set_string("replace_air", fields.replace_air)
+		player:set_wielded_item(itemstack)
+		return
+	elseif fields.replace_air_backward ~= nil then
+		meta:set_string("replace_air_backward", fields.replace_air_backward)
+		player:set_wielded_item(itemstack)
+		return
+	end
+
 	if not fields.exit then
 		return
 	end
@@ -169,24 +187,6 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 	end
 	if tonumber(fields.radius) > 30 then
 		minetest.chat_send_player(player:get_player_name(), "You cannot set a radius over 30.")
-		return
-	end
-
-	local itemstack = player:get_wielded_item()
-	if itemstack:get_name() ~= "brush:brush" then
-		minetest.chat_send_player(player:get_player_name(), "You must hold the brush.")
-		return
-	end
-
-	local meta = itemstack:get_meta()
-
-	if fields.replace_air ~= nil then
-		meta:set_string("replace_air", fields.replace_air)
-		player:set_wielded_item(itemstack)
-		return
-	elseif fields.replace_air_backward ~= nil then
-		meta:set_string("replace_air_backward", fields.replace_air_backward)
-		player:set_wielded_item(itemstack)
 		return
 	end
 
