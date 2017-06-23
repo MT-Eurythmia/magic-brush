@@ -4,6 +4,7 @@ minetest.register_craftitem("brush:brush", {
 	inventory_image = "brush_brush.png",
 	description = "Magic Brush",
 	stack_max = 1,
+	range = 15,
 	on_place = function(itemstack, placer, pointed_thing)
 		if not minetest.check_player_privs(placer, "brush") then
 			minetest.chat_send_player(placer:get_player_name(), "Missing privilege: brush")
